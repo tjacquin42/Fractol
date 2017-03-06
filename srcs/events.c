@@ -6,7 +6,7 @@
 /*   By: ghubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 13:49:43 by ghubert           #+#    #+#             */
-/*   Updated: 2017/03/03 17:57:32 by ghubert          ###   ########.fr       */
+/*   Updated: 2017/03/06 16:48:12 by tjacquin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void		esc(t_fol *s)
 
 int			key_h(int kc, t_fol *s)
 {
+	ft_putnbr(kc);
+	ft_putstr("\n\n");
 	if (kc == ENTER)
 		init_fract(s);
 	if (kc == ESC)
@@ -31,7 +33,7 @@ int			key_h(int kc, t_fol *s)
 	ft_putnbr(s->check);
 	ft_putstr(" = check ^^\n");
 	mlx_clear_window(s->mlx, s->win);
-	disp_fract(s);
+	find_type(s);
 	mlx_put_image_to_window(s->mlx, s->win, s->img, 0, 0);
 	return (0);
 }
@@ -43,7 +45,7 @@ int			mouse_h(int butt, int x, int y, t_fol *s)
 		ft_zoom(s, x, y);
 	else if (butt == 4 || butt == 2)
 		ft_dezoom(s, x, y);
-	disp_fract(s);
+	find_type(s);
 	mlx_put_image_to_window(s->mlx, s->win, s->img, 0, 0);
 	return (0);
 }

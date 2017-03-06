@@ -6,7 +6,7 @@
 /*   By: ghubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 10:23:32 by ghubert           #+#    #+#             */
-/*   Updated: 2017/03/03 17:52:24 by ghubert          ###   ########.fr       */
+/*   Updated: 2017/03/06 16:26:19 by tjacquin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct					s_fol
 	int							bpx;
 	int							szl;
 	int							endl;
-	int							type;
+	char						*type;
 	int							x;
 	int							y;
 	double						tmp;
@@ -49,10 +49,19 @@ typedef struct					s_fol
 
 int								key_h(int kc, struct s_fol *s);
 int								mouse_h(int b, int x, int y, struct s_fol *s);
-void							init_fract(struct s_fol *s);
+
 void							mandelbrot(struct s_fol *stk);
-void							disp_fract(struct s_fol *s);
+void							init_mandel(t_fol *stk);
+
+void							julia(t_fol *stk);
+
+void							argv_error(t_fol *stk);
+void							argv_error(t_fol *stk);
+
 void							ft_zoom(struct s_fol *s, int x, int y);
 void							ft_dezoom(struct s_fol *s, int x, int y);
+
+void							init_fract(t_fol *s);
+void							find_type(t_fol *stk);
 
 #endif

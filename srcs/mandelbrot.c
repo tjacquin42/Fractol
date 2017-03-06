@@ -6,7 +6,7 @@
 /*   By: ghubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 17:31:02 by ghubert           #+#    #+#             */
-/*   Updated: 2017/03/03 17:09:01 by ghubert          ###   ########.fr       */
+/*   Updated: 2017/03/06 16:42:40 by tjacquin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,3 +59,18 @@ void		mandelbrot(t_fol *s)
 		s->x++;
 	}
 }
+/*
+void		init_mandel(t_fol *s)
+{
+	s->zoom = 300;
+	s->img_x = (s->x2 - s->x1) * s->zoom;
+	s->img_y = (s->y2 - s->y1) * s->zoom;
+	s->x1 = -2.1;
+	s->x2 = 1.5;
+	s->y1 = -1.0;
+	s->y2 = 1.2;
+	s->iter = 50;
+	ft_putstr("inited\n");
+	ft_putnbr(s->img_y);
+	mandelbrot(s);
+}*/
