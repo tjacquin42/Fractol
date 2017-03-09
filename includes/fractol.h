@@ -6,7 +6,7 @@
 /*   By: ghubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 10:23:32 by ghubert           #+#    #+#             */
-/*   Updated: 2017/03/09 18:26:15 by ghubert          ###   ########.fr       */
+/*   Updated: 2017/03/09 18:50:45 by ghubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,7 @@ void							adjust_color(t_fol *s, int kc);
 void							julia(t_fol *s);
 int								julia_event(int x, int y, struct s_fol *s);
 void							init_mlx(struct s_fol *s);
+void							bbird(struct s_fol *s);
+void							cross(struct s_fol *s);
 
 #endif

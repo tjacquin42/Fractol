@@ -6,7 +6,7 @@
 /*   By: ghubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 17:12:08 by ghubert           #+#    #+#             */
-/*   Updated: 2017/03/09 18:10:16 by ghubert          ###   ########.fr       */
+/*   Updated: 2017/03/09 19:01:23 by ghubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ void	disp_fract(t_fol *s)
 		julia(s);
 	if (s->type == 3)
 		burning_ship(s);
+	if (s->type == 4)
+		bbird(s);
+	if (s->type == 5)
+		cross(s);
 }
 
 void	init2(t_fol *s)
@@ -35,7 +39,7 @@ void	init2(t_fol *s)
 		s->oy = 0;
 		s->iter = 50;
 	}
-	if (s->type == 3)
+	if (s->type == 3 || s->type == 4 || s->type == 5)
 	{
 		s->color = 3;
 		s->zoom = 200;
@@ -78,6 +82,10 @@ void	parce_it(t_fol *stk, char *arg)
 		stk->type = 2;
 	if ((arg[0] == 'B' || arg[0] == 'b') && (arg[1] == 'S' || arg[1] == 's'))
 		stk->type = 3;
+	if ((arg[0] == 'B' || arg[0] == 'b') && (arg[1] == 'B' || arg[1] == 'b'))
+		stk->type = 4;
+	if (arg[0] == 'C' || arg[0] == 'c')
+		stk->type = 5;
 }
 
 int		main(int ac, char **av)
@@ -88,8 +96,10 @@ int		main(int ac, char **av)
 		return (0);
 	if (ac == 1)
 		stk->type = 1;
-	if (ac == 2)
+	else if (ac == 2)
 		parce_it(stk, av[1]);
+	else
+		return (0);
 	init(stk);
 	init_mlx(stk);
 	return (0);
