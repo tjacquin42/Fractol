@@ -6,7 +6,7 @@
 /*   By: ghubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 10:23:32 by ghubert           #+#    #+#             */
-/*   Updated: 2017/03/07 14:08:58 by ghubert          ###   ########.fr       */
+/*   Updated: 2017/03/09 18:26:15 by ghubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include "../libft/libft.h"
 
+# define SPACE 49
 # define ESC 53
 # define ENTER 36
 # define KEY_P 35
@@ -75,6 +76,9 @@ typedef struct					s_fol
 	int							color;
 	double						tmp;
 	double						zoom;
+	double						t_zoom;
+	int							yzoom;
+	int							xzoom;
 	int							iter;
 	double						x1;
 	double						x2;
@@ -88,6 +92,7 @@ typedef struct					s_fol
 	double						z_i;
 }								t_fol;
 
+void							burning_ship(struct s_fol *s);
 int								key_h(int kc, struct s_fol *s);
 int								mouse_h(int b, int x, int y, struct s_fol *s);
 void							init(struct s_fol *s);

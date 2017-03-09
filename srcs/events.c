@@ -6,7 +6,7 @@
 /*   By: ghubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 13:49:43 by ghubert           #+#    #+#             */
-/*   Updated: 2017/03/07 14:06:58 by ghubert          ###   ########.fr       */
+/*   Updated: 2017/03/09 18:09:38 by ghubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int			key_h(int kc, t_fol *s)
 		adjust_color(s, kc);
 	if (kc == ENTER)
 		init(s);
+	if (kc == SPACE)
+		s->blok_julia = 1;
 	if (kc == ESC)
 		esc(s);
 	if (kc == KEY_C)

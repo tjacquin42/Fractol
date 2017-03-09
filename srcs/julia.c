@@ -6,7 +6,7 @@
 /*   By: ghubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 13:30:54 by ghubert           #+#    #+#             */
-/*   Updated: 2017/03/07 13:43:28 by ghubert          ###   ########.fr       */
+/*   Updated: 2017/03/09 18:31:20 by ghubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	func_julia(double x, double y, t_fol *s)
 {
 	int i;
 
-	s->c_r = s->zoom / 1000;
-	s->c_i = s->zoom / 1000;
+	s->c_r = (s->xzoom - (s->width / 2)) / s->t_zoom;
+	s->c_i = (s->yzoom - (s->height / 2)) / s->t_zoom;
 	s->z_r = x / s->zoom + (s->ox - ((s->width / 2) / s->zoom));
 	s->z_i = y / s->zoom + (s->oy - ((s->width / 2) / s->zoom));
 	i = 0;
@@ -58,8 +58,9 @@ int		julia_event(int x, int y, t_fol *s)
 {
 	if (s->type == 2 && s->blok_julia == 0)
 	{
-		s->zoom = x;
-		s->zoom = y;
+		s->xzoom = x;
+		s->yzoom = y;
+		s->t_zoom = s->zoom;
 		disp_fract(s);
 		mlx_put_image_to_window(s->mlx, s->win, s->img, 0, 0);
 	}

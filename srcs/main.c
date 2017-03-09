@@ -6,7 +6,7 @@
 /*   By: ghubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 17:12:08 by ghubert           #+#    #+#             */
-/*   Updated: 2017/03/07 14:14:41 by ghubert          ###   ########.fr       */
+/*   Updated: 2017/03/09 18:10:16 by ghubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	disp_fract(t_fol *s)
 		mandelbrot(s);
 	if (s->type == 2)
 		julia(s);
+	if (s->type == 3)
+		burning_ship(s);
 }
 
 void	init2(t_fol *s)
@@ -24,6 +26,18 @@ void	init2(t_fol *s)
 	if (s->type == 2)
 	{
 		s->color = 2;
+		s->zoom = 200;
+		s->height = 1000;
+		s->width = 1000;
+		s->img_x = s->width;
+		s->img_y = s->height;
+		s->ox = 0;
+		s->oy = 0;
+		s->iter = 50;
+	}
+	if (s->type == 3)
+	{
+		s->color = 3;
 		s->zoom = 200;
 		s->height = 1000;
 		s->width = 1000;
@@ -62,6 +76,8 @@ void	parce_it(t_fol *stk, char *arg)
 		stk->type = 1;
 	if (arg[0] == 'j' || arg[0] == 'J')
 		stk->type = 2;
+	if ((arg[0] == 'B' || arg[0] == 'b') && (arg[1] == 'S' || arg[1] == 's'))
+		stk->type = 3;
 }
 
 int		main(int ac, char **av)
