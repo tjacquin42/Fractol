@@ -6,7 +6,7 @@
 /*   By: ghubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 15:49:40 by ghubert           #+#    #+#             */
-/*   Updated: 2017/03/09 19:01:19 by ghubert          ###   ########.fr       */
+/*   Updated: 2017/03/10 01:22:39 by ghubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ void	burning_ship(t_fol *s)
 			{
 				s->tmp = s->z_r;
 				s->z_r = s->z_r * s->z_r - s->z_i * s->z_i + s->c_r;
-				s->z_i =  2 * fabs(s->z_i * s->tmp) + s->c_i;
+				s->z_i = 2 * fabs(s->z_i * s->tmp) + s->c_i;
 				i++;
 			}
 			put_pixel_img(s->x, s->y, i, s);
 		}
 	}
-	return;
+	return ;
 }
 
 void	bbird(t_fol *s)
@@ -59,13 +59,13 @@ void	bbird(t_fol *s)
 			{
 				s->tmp = s->z_r;
 				s->z_r = s->z_r * s->z_r - s->z_i * s->z_i + s->c_r;
-				s->z_i =  2 * fabs(s->z_i) * s->tmp + s->c_i;
+				s->z_i = 2 * fabs(s->z_i) * s->tmp + s->c_i;
 				i++;
 			}
 			put_pixel_img(s->x, s->y, i, s);
 		}
 	}
-	return;
+	return ;
 }
 
 void	cross(t_fol *s)
@@ -76,7 +76,7 @@ void	cross(t_fol *s)
 	while (++s->x < s->img_x)
 	{
 		s->y = 0;
-		while(++s->y < s->img_y)
+		while (++s->y < s->img_y)
 		{
 			s->z_i = 0;
 			s->z_r = 0;

@@ -6,7 +6,7 @@
 /*   By: ghubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 10:23:32 by ghubert           #+#    #+#             */
-/*   Updated: 2017/03/09 18:50:45 by ghubert          ###   ########.fr       */
+/*   Updated: 2017/03/10 00:21:37 by ghubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct					s_fol
 	double						ox;
 	double						oy;
 	int							blok_julia;
+	int							hide;
 	int							x;
 	int							y;
 	int							width;
@@ -92,7 +93,9 @@ typedef struct					s_fol
 	double						z_i;
 }								t_fol;
 
+void							ft_put_commands(struct s_fol *s);
 void							burning_ship(struct s_fol *s);
+int								usage_error(void);
 int								key_h(int kc, struct s_fol *s);
 int								mouse_h(int b, int x, int y, struct s_fol *s);
 void							init(struct s_fol *s);
@@ -108,5 +111,8 @@ int								julia_event(int x, int y, struct s_fol *s);
 void							init_mlx(struct s_fol *s);
 void							bbird(struct s_fol *s);
 void							cross(struct s_fol *s);
+void							nintendo(struct s_fol *s);
+void							tricorn(struct s_fol *s);
+void							julio(struct s_fol *s);
 
 #endif

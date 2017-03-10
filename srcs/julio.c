@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia.c                                            :+:      :+:    :+:   */
+/*   julio.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/07 13:30:54 by ghubert           #+#    #+#             */
-/*   Updated: 2017/03/10 01:19:24 by ghubert          ###   ########.fr       */
+/*   Created: 2017/03/09 19:41:41 by ghubert           #+#    #+#             */
+/*   Updated: 2017/03/09 22:40:54 by ghubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	func_julia(double x, double y, t_fol *s)
+void	func_julio(double x, double y, t_fol *s)
 {
 	int i;
 
@@ -24,8 +24,8 @@ void	func_julia(double x, double y, t_fol *s)
 	while (s->z_r * s->z_r + s->z_i * s->z_i < 4 && i < s->iter)
 	{
 		s->tmp = s->z_r;
-		s->z_r = s->z_r * s->z_r - s->z_i * s->z_i + s->c_r;
-		s->z_i = 2 * s->z_i * s->tmp + s->c_i;
+		s->z_r = s->z_r * s->z_r + s->z_i * s->z_i + s->c_r;
+		s->z_i = 3 * s->z_i * s->tmp + s->c_i;
 		i++;
 	}
 	if (i == s->iter)
@@ -35,7 +35,7 @@ void	func_julia(double x, double y, t_fol *s)
 	return ;
 }
 
-void	julia(t_fol *s)
+void	julio(t_fol *s)
 {
 	double x;
 	double y;
@@ -46,23 +46,50 @@ void	julia(t_fol *s)
 		y = 0;
 		while (y < s->img_y)
 		{
-			func_julia(x, y, s);
+			func_julio(x, y, s);
 			y++;
 		}
 		x++;
 	}
 }
 
-int		julia_event(int x, int y, t_fol *s)
+void	func_nin(double x, double y, t_fol *s)
 {
-	if ((s->type == 6 || s->type == 2) && s->blok_julia == 0)
+	int i;
+
+	s->c_r = (-100 - (s->width / 2)) / 200;
+	s->c_i = (500 - (s->height / 2)) / 200;
+	s->z_r = x / s->zoom + (s->ox - ((s->width / 2) / s->zoom));
+	s->z_i = y / s->zoom + (s->oy - ((s->width / 2) / s->zoom));
+	i = 0;
+	while (s->z_r * s->z_r + s->z_i * s->z_i < 4 && i < s->iter)
 	{
-		s->xzoom = x;
-		s->yzoom = y;
-		s->t_zoom = s->zoom;
-		disp_fract(s);
-		mlx_put_image_to_window(s->mlx, s->win, s->img, 0, 0);
-		ft_put_commands(s);
+		s->tmp = s->z_r;
+		s->z_r = s->z_r * s->z_r + s->z_i * s->z_i + s->c_r;
+		s->z_i = 2 * s->z_i * s->tmp + s->c_i;
+		i++;
 	}
-	return (0);
+	if (i == s->iter)
+		put_pixel_img(x, y, 1, s);
+	else
+		put_pixel_img(x, y, i, s);
+	return ;
+}
+
+void	nintendo(t_fol *s)
+{
+	double x;
+	double y;
+
+	x = 0;
+	while (x < s->img_x)
+	{
+		y = 0;
+		while (y < s->img_y)
+		{
+			func_nin(x, y, s);
+			y++;
+		}
+		x++;
+	}
 }

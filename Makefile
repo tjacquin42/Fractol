@@ -6,7 +6,7 @@
 #    By: ghubert <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/14 16:45:36 by ghubert           #+#    #+#              #
-#    Updated: 2017/03/07 16:04:03 by ghubert          ###   ########.fr        #
+#    Updated: 2017/03/09 23:22:14 by ghubert          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,9 @@ SRC= ./srcs/main.c \
 		./srcs/draw.c \
 		./srcs/julia.c \
 		./srcs/b_ship.c \
+		./srcs/julio.c \
+		./srcs/tricorn.c \
+		./srcs/error.c \
 
 OBJ= ./main.o \
 		./mandelbrot.o \
@@ -27,6 +30,9 @@ OBJ= ./main.o \
 		./draw.o \
 		./julia.o \
 		./b_ship.o \
+		./julio.o \
+		./tricorn.o \
+		./error.o \
 
 FLAGS= -Wall -Wextra -Werror
 

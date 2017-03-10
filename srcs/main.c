@@ -6,11 +6,12 @@
 /*   By: ghubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 17:12:08 by ghubert           #+#    #+#             */
-/*   Updated: 2017/03/09 19:01:23 by ghubert          ###   ########.fr       */
+/*   Updated: 2017/03/10 01:24:53 by ghubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+
 void	disp_fract(t_fol *s)
 {
 	if (s->type == 1)
@@ -23,11 +24,17 @@ void	disp_fract(t_fol *s)
 		bbird(s);
 	if (s->type == 5)
 		cross(s);
+	if (s->type == 6)
+		julio(s);
+	if (s->type == 7)
+		nintendo(s);
+	if (s->type == 8)
+		tricorn(s);
 }
 
 void	init2(t_fol *s)
 {
-	if (s->type == 2)
+	if (s->type == 2 || s->type == 6 || s->type == 7 || s->type == 8)
 	{
 		s->color = 2;
 		s->zoom = 200;
@@ -60,7 +67,7 @@ void	init(t_fol *s)
 	if (s->type == 1)
 	{
 		s->width = 1000;
-		s->height = 600;
+		s->height = 1000;
 		s->color = 1;
 		s->zoom = 250;
 		s->img_x = s->width;
@@ -74,18 +81,26 @@ void	init(t_fol *s)
 	change_color(s);
 }
 
-void	parce_it(t_fol *stk, char *arg)
+void	parce_it(t_fol *stk, char *a)
 {
-	if (arg[0] == 'm' || arg[0] == 'M')
+	if (a[0] == 'm' || a[0] == 'M')
 		stk->type = 1;
-	if (arg[0] == 'j' || arg[0] == 'J')
+	else if (a[0] == 'j' || a[0] == 'J')
 		stk->type = 2;
-	if ((arg[0] == 'B' || arg[0] == 'b') && (arg[1] == 'S' || arg[1] == 's'))
+	else if ((a[0] == 'B' || a[0] == 'b') && (a[1] == 'S' || a[1] == 's'))
 		stk->type = 3;
-	if ((arg[0] == 'B' || arg[0] == 'b') && (arg[1] == 'B' || arg[1] == 'b'))
+	else if ((a[0] == 'B' || a[0] == 'b') && (a[1] == 'B' || a[1] == 'b'))
 		stk->type = 4;
-	if (arg[0] == 'C' || arg[0] == 'c')
+	else if (a[0] == 'C' || a[0] == 'c')
 		stk->type = 5;
+	else if ((a[0] == 'J' || a[0] == 'j') && (a[1] == 'o' || a[1] == 'O'))
+		stk->type = 6;
+	else if (a[0] == 'N' || a[0] == 'n')
+		stk->type = 7;
+	else if (a[0] == 'T' || a[0] == 't')
+		stk->type = 8;
+	else
+		stk->type = 0;
 }
 
 int		main(int ac, char **av)
@@ -99,7 +114,10 @@ int		main(int ac, char **av)
 	else if (ac == 2)
 		parce_it(stk, av[1]);
 	else
-		return (0);
+		return (usage_error());
+	if (stk->type == 0)
+		return (usage_error());
+	stk->hide = 0;
 	init(stk);
 	init_mlx(stk);
 	return (0);
